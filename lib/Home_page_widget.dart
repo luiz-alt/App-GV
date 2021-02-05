@@ -14,50 +14,31 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("G&V - Pavês"),
-        actions: [CustomSwitch()],
+        actions: [Botao_dark()],
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              width: 380,
-              height: 160,
-              color: Colors.black,
-            ),
-            Container(
-              width: 380,
-              height: 160,
-              color: Colors.black,
-            ),
-            Container(
-              width: 380,
-              height: 160,
-              color: Colors.black,
-            ),
-            Container(
-              width: 380,
-              height: 160,
-              color: Colors.black,
-            ),
-          ],
+        child: ListView(
+          //mainAxisAlignment: MainAxisAlignment.spaceAround,
+          //crossAxisAlignment: CrossAxisAlignment.start,
+          //mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [Contenes(), Contenes(), Contenes(), Contenes()],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            contagem++;
-          });
-        },
-      ),
+      //floatingActionButton: FloatingActionButton(
+      //child: Icon(Icons.add),
+      //onPressed: () {
+      //setState(() {
+      //contagem++;
+      //});
+      //},
+      //),
     );
   }
 }
 
-class CustomSwitch extends StatelessWidget {
+class Botao_dark extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Switch(
@@ -65,6 +46,32 @@ class CustomSwitch extends StatelessWidget {
       onChanged: (value) {
         AppController.instance.changeThene();
       },
+    );
+  }
+}
+
+class Contenes extends StatefulWidget {
+  final String link_imagem;
+
+  const Contenes({Key key, this.link_imagem}) : super(key: key);
+
+  @override
+  _ContenesState createState() => _ContenesState();
+}
+
+class _ContenesState extends State<Contenes> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      width: 400,
+      height: 200,
+      decoration: BoxDecoration(
+          color: Colors.blue[50],
+          borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+              image: NetworkImage(
+                  "https://docesmomentos.com/wp-content/uploads/2019/06/pave-de-chocolate.png"))),
     );
   }
 }
